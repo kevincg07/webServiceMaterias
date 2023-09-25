@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,13 +26,13 @@ public class MateriasController {
 	MateriasImplement logic;
 	
 	@PostMapping
-	ResponseEntity<Materias> guardar(MateriasRequest request){
+	ResponseEntity<Materias> guardar(@RequestBody MateriasRequest request){
 		Materias m = logic.guardar(request);
 		return new ResponseEntity<Materias>(m, HttpStatus.OK);
 	}
 	
 	@PutMapping
-	ResponseEntity<Materias> actualizar(MateriasRequest request){
+	ResponseEntity<Materias> actualizar(@RequestBody MateriasRequest request){
 		Materias m = logic.actualizar(request);
 		return new ResponseEntity<Materias>(m, HttpStatus.OK);
 	}

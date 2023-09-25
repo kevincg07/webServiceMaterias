@@ -15,7 +15,7 @@ public class MateriasImplement implements MateriasService{
 
 	@Autowired
 	MateriasRepository repo;
-	
+
 	@Override
 	public Materias guardar(MateriasRequest request) {
 		Materias m = new Materias();
@@ -34,11 +34,13 @@ public class MateriasImplement implements MateriasService{
 
 	@Override
 	public Materias buscar(int id) {
+		
 		return repo.findById(id).get();
 	}
 
 	@Override
 	public Materias buscar(String name) {
+		
 		return repo.findByNombre(name).get();
 	}
 
@@ -50,6 +52,7 @@ public class MateriasImplement implements MateriasService{
 
 	@Override
 	public List<Materias> mostrar() {
+		
 		return repo.findAll();
 	}
 
