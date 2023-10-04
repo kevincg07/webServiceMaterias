@@ -2,6 +2,8 @@ package com.materias.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class MateriasController {
 	MateriasImplement logic;
 	
 	@PostMapping
-	ResponseEntity<Materias> guardar(@RequestBody MateriasRequest request){
+	ResponseEntity<Materias> guardar(@Valid @RequestBody MateriasRequest request){
 		Materias m = logic.guardar(request);
 		return new ResponseEntity<Materias>(m, HttpStatus.OK);
 	}

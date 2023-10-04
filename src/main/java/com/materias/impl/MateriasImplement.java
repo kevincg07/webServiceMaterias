@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.materias.exception.IdNotDeleteException;
 import com.materias.service.MateriasService;
 import com.persistence_escuela.entity.Materias;
 import com.persistence_escuela.repository.MateriasRepository;
@@ -46,8 +47,13 @@ public class MateriasImplement implements MateriasService{
 
 	@Override
 	public String eliminar(int id) {
-		repo.deleteById(id);
-		return "Borrado";
+		if(! repo.findById(id).isPresent()) {
+			throw new IdNotDeleteException("Este identificador no existe");
+		}else {
+			repo.deleteById(id);
+			return "Borrado";
+		}
+		
 	}
 
 	@Override
